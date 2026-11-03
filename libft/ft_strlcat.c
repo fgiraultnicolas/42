@@ -1,41 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgirault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 05:17:52 by fgirault          #+#    #+#             */
-/*   Updated: 2026/09/15 05:56:45 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/03 12:00:31 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include <bsd/string.h>
+#include <stddef.h>
+#include <stdio.h>
 
-char	*ft_strncat(char *dest, char *src, unsigned int nb);
+size_t ft_strlcat(char *dest, char *src, size_t size) {
+  size_t i;
+  size_t j;
+  size_t real_size;
 
-/*int	main(void)
-{
-	char	dest[10] = "Hello";
-	printf("%s", ft_strncat(dest, "World", 2));
-	return (0);
-}*/
+  i = 0;
+  j = 0;
+  real_size = size - ft_strlen(dest) - 1;
+  if (size < ft_strlen(dest))
+    return (size);
+  while (dest[i] != '\0')
+    i++;
+  while (j < real_size) {
+    dest[i] = src[j];
+    i++;
+    j++;
+  }
+  dest[i] = '\0';
+  return (ft_strlen(dest) + ft_strlen(src));
+}
 
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
-{
-	unsigned int	i;
-	unsigned int	j;
-
-	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0' && j < nb)
-	{
-		dest[i] = src[j];
-		i++;
-		j++;
-	}
-	dest[i] = '\0';
-	return (dest);
+int main(int argc, char **argv) {
+  char dest[15] = "test";
+  printf("%zu\n", strlcat(dest, "te", 5));
+  printf("%s\n", dest);
+  printf("%s\n", ft_strlcat());
+  return (0);
 }
