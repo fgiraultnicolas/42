@@ -1,47 +1,88 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgirault <fgirault@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgirault@fgirault@student.42.fr            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/23 15:52:12 by fgirault          #+#    #+#             */
-/*   Updated: 2026/10/12 12:17:00 by fgirault         ###   ########.fr       */
+/*   Created: 2026/11/04 13:27:17 by fgirault          #+#    #+#             */
+/*   Updated: 2026/11/04 13:27:21 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-/*void	ft_putnbr(int nb);
-
-int	main(void)
+size_t	int_len(int n)
 {
-	ft_putnbr(12345);
-	return (0);
-}*/
+	size_t	len;
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
+	len = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
+	{
+		n = n / 10;
+		len++;
+	}
+	return (len);
 }
 
-void	ft_putnbr_(int nb)
+char	*putnbr_itoa_pos(int n, char *ascii)
 {
-	if (nb == -2147483648)
+	size_t	i;
+
+	i = int_len(n);
+	ascii[i] = '\0';
+	while (n != 0)
 	{
-		write(1, "-2147483648", 11);
-		return ;
+		i--;
+		ascii[i] = n % 10 + '0';
+		n = n / 10;
 	}
-	if (nb < 0)
+	return (ascii);
+}
+
+char	*putnbr_itoa_neg(int n, char *ascii)
+{
+	size_t	i;
+
+	i = int_len(n) + 1;
+	ascii[i] = '\0';
+	while (n != 1)
 	{
-		ft_putchar('-');
-		nb *= -1;
+		i--;
+		ascii[i] = n % 10 + '0';
+		n = n / 10;
 	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
+	i--;
+	ascii[i] = '-';
+	return (ascii);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*ascii;
+
+	if (n < 0)
+	{
+		ascii = malloc(sizeof(char) * (int_len(n) + 2));
+		ascii = putnbr_itoa_neg(n, ascii);
+		if (ascii == 0)
+			return (0);
+	}
 	else
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ascii = malloc(sizeof(char) * (int_len(n) + 1));
+		ascii = putnbr_itoa_pos(n, ascii);
+		if (ascii == 0)
+			return (0);
 	}
+	return (ascii);
+}
+
+int		main(void)
+{
+	printf("%s\n", ft_itoa(-12345));
+	return (0);
 }
