@@ -10,35 +10,4 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putstr(char *str);
-int		ft_strlen(char *str);
-
-/*int	main(void)
-{
-	char	str[] = "Hello";
-
-	ft_putstr(str);
-	return (0);
-}*/
-
-void	ft_putstr(char *str)
-{
-	int	n;
-
-	n = ft_strlen(str);
-	write(1, str, n);
-}
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
+void ft_putstr_fd(char *s, int fd) { write(fd, s, ft_strlen(s)); }

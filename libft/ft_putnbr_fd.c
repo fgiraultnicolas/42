@@ -10,38 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-/*void	ft_putnbr(int nb);
-
-int	main(void)
-{
-	ft_putnbr(12345);
-	return (0);
-}*/
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putnbr_(int nb)
-{
-	if (nb == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return ;
-	}
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb *= -1;
-	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
-	else
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
+void ft_putnbr_fd(int n, int fd) {
+  if (n == -2147483648) {
+    write(fd, "-2147483648", 11);
+    return;
+  }
+  if (n < 0) {
+    ft_putchar_fd('-', fd);
+    n *= -1;
+  }
+  if (n < 10)
+    ft_putchar_fd(n + '0', fd);
+  else {
+    ft_putnbr_fd(n / 10, fd);
+    ft_putnbr_fd(n % 10, fd);
+  }
 }

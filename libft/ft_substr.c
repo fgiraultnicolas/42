@@ -10,37 +10,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+char *ft_substr_overflow(char const *s, unsigned int start, size_t len) {
+  size_t i;
+  char *substring;
 
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	int		i;
-	char	*substring;
-
-	i = 0;
-	if (start + len > ft_strlen(s))
-	{
-		substring = malloc(sizeof(char) * (ft_strlen - start + 1));
-			if (substring == 0)
-				return (0);
-		while (start < ft_strlen(s))
-	{
-		substring[i] = s[start];
-		start++;
-		i++;
-	}
-	}
-	else
-	{
-		substring = malloc(sizeof(char) * (len + 1));
-		if (substring == 0)
-			return (0);
-		while (i < len)
-		{
-			substring[i] = s[start];
-			start++;
-			i++;
-		}
-	}
-	return (substring)
+  i = 0;
+  substring = malloc(sizeof(char) * (ft_strlen - start + 1));
+  if (substring == 0)
+    return (0);
+  while (start < ft_strlen(s)) {
+    substring[i] = s[start];
+    start++;
+    i++;
+  }
+  substring[i] = '\0';
+  return (substring);
 }
+
+char *ft_substr_underflow(char const *s, unsigned int start, size_t len) {
+  {
+    size_t i;
+    char *substring;
+
+    i = 0;
+    substring = malloc(sizeof(char) * (len + 1));
+    if (substring == 0)
+      return (0);
+    while (i < len) {
+      substring[i] = s[start];
+      start++;
+      i++;
+    }
+    substring[i] = '\0';
+    return (substring);
+  }
+
+  char *ft_substr(char const *s, unsigned int start, size_t len) {
+    if (start + len > ft_strlen(s))
+      return (ft_substr_overflow(s, start, len));
+    else
+      return (ft_substr_underflow(s, start, len));
+  }
