@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <bsd/string.h>
+// NOT SURE IF ALL OF THESES INCLUDES ARE NEEDED OR IF I SHOULD PUT IT INSIDE OF A HEADER
+/*#include <bsd/string.h>
 #include <stddef.h>
-#include <stdio.h>
+#include <stdio.h>*/
 
 size_t ft_strlcat(char *dest, char *src, size_t size) {
   size_t i;
@@ -33,12 +34,4 @@ size_t ft_strlcat(char *dest, char *src, size_t size) {
   }
   dest[i] = '\0';
   return (ft_strlen(dest) + ft_strlen(src));
-}
-
-int main(int argc, char **argv) {
-  char dest[15] = "test";
-  printf("%zu\n", strlcat(dest, "te", 5));
-  printf("%s\n", dest);
-  printf("%s\n", ft_strlcat());
-  return (0);
 }
