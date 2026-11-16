@@ -12,31 +12,21 @@
 
 #include "header.h"
 
-/*#include <stdio.h>
-#include <string.h>
-
-char	*ft_strstr(char *str, char *to_find);
-
-int	main(void)
-{
-	printf("%p\n", ft_strstr("aaab", "aab"));
-	printf("%p\n", strstr("aaab", "aab"));
-	return (0);
-}*/
-
-char	*ft_strstr(char *str, char *to_find)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (str[i] != '\0')
+	if (*little == '\0')
+		return ((char *)big);
+	while (big[i] != '\0' && i < len)
 	{
-		if (str[i] == to_find[j])
+		if (big[i] == little[j])
 		{
-			if (to_find[j + 1] == '\0')
-				return (&str[i - j]);
+			if (little[j + 1] == '\0')
+				return ((char *)&big[i - j]);
 			j++;
 		}
 		else
