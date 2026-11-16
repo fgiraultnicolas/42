@@ -13,9 +13,15 @@
 #ifndef HEADER_H
 # define HEADER_H
 
+// libs
+
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <unistd.h>
 	#include <stddef.h>
+
+// proto
+	size_t	ft_strlen(char *str);
+	char	*ft_strcpy(char *dest, char *src) ;
 
 #endif

@@ -1,3 +1,5 @@
+#include "header.h"
+
 char *strrchr(const char *s, int c)
 {
 	char	*tmp;
@@ -6,10 +8,10 @@ char *strrchr(const char *s, int c)
 	while (*s != '\0')
 	{
 		if (*s == c)
-			tmp = s;
+			tmp = (char *)s;
 		s++;
 	}
 	if (*s == c)
-		tmp = s;
+		tmp = (char *)s;
 	return (tmp);
 }

@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// NOT SURE IF ALL OF THESES INCLUDES ARE NEEDED OR IF I SHOULD PUT IT INSIDE OF A HEADER
-/*#include <bsd/string.h>
-#include <stddef.h>
-#include <stdio.h>*/
+#include "header.h"
 
 size_t ft_strlcat(char *dest, char *src, size_t size) {
   size_t i;

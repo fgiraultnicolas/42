@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include "header.h"
 
 int	ft_strlen_atoi(char *str)
 {
@@ -66,10 +66,3 @@ int	ft_atoi(char *str)
 	else
 		return (-nb);
 }
-
-/*int	main(void)
-{
-	char	*str = " 	--+123a456";
-	printf("%d\n", ft_atoi(str));
-	return (0);
-}*/

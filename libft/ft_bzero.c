@@ -10,14 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_bzero(int n, void s[n])
+#include "header.h"
+
+void	ft_bzero(size_t n, void *s)
 {
-	int	i;
+	size_t	i;
+	unsigned char	*edit_s;
 
 	i = 0;
+	edit_s = s;
 	while (i < n)
 	{
-		s[i] = '\0';
+		edit_s[i] = '\0';
 		i++;
 	}
 }

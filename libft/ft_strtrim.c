@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "header.h"
+
 size_t	trimlen(char const *s1, char const *set)
 	{                                            
   size_t	i;                               
@@ -17,7 +19,7 @@ size_t	trimlen(char const *s1, char const *set)
   size_t	count;                           
                                              
   i = 0;                                     
-  const_s2 = s2;                             
+  count = 0;
   while (s1[i] != '\0')                      
   {                                          
 	j = 0;                                   
@@ -27,7 +29,7 @@ size_t	trimlen(char const *s1, char const *set)
 		count++;                             
 	i++;                                     
   }                                          
-  return (count)
+  return (count);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -38,8 +40,8 @@ char	*ft_strtrim(char const *s1, char const *set)
   char	*const_s2;
 
   i = 0;
+  s2 = malloc(sizeof(char) * (ft_strlen((char *)s1) - trimlen(s1, set) + 1));
   const_s2 = s2;
-  s2 = malloc(sizeof(char) * (ft_strlen(s1) - trimlen(s1, set) + 1));
 while (s1[i] != '\0')
 {                    
   j = 0;                                   

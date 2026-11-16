@@ -10,15 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_substr_overflow(char const *s, unsigned int start, size_t len) {
-  size_t i;
-  char *substring;
+#include "header.h"
+
+char	*ft_substr_overflow(char const *s, unsigned int start)
+{
+  size_t	i;
+  char	*substring;
 
   i = 0;
-  substring = malloc(sizeof(char) * (ft_strlen - start + 1));
+  substring = malloc(sizeof(char) * (ft_strlen((char *)s) - start + 1));
   if (substring == 0)
     return (0);
-  while (start < ft_strlen(s)) {
+  while (start < ft_strlen((char *)s)) {
     substring[i] = s[start];
     start++;
     i++;
@@ -27,7 +30,7 @@ char *ft_substr_overflow(char const *s, unsigned int start, size_t len) {
   return (substring);
 }
 
-char *ft_substr_underflow(char const *s, unsigned int start, size_t len) {
+char *ft_substr_underflow(char const *s, unsigned int start, size_t len)
   {
     size_t i;
     char *substring;
@@ -46,8 +49,8 @@ char *ft_substr_underflow(char const *s, unsigned int start, size_t len) {
   }
 
   char *ft_substr(char const *s, unsigned int start, size_t len) {
-    if (start + len > ft_strlen(s))
-      return (ft_substr_overflow(s, start, len));
+    if (start + len > ft_strlen((char *)s))
+      return (ft_substr_overflow(s, start));
     else
       return (ft_substr_underflow(s, start, len));
   }

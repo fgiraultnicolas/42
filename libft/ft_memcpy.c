@@ -10,14 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "header.h"
+
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
+	const unsigned char	*edit_src;
+	unsigned char	*edit_dest;
 
 	i = 0;
+	edit_src = src;
+	edit_dest = dest;
 	while (i < n)
 	{
-		dest[i] = src[i];
+		edit_dest[i] = edit_src[i];
 		i++;
 	}
 	return (dest);

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "header.h"
+
 #include <stdlib.h>
 
 int	is_sep(char c, char *charset)

@@ -10,25 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include "header.h"
 
-int	ft_strlen(char *str);
-
-/*int	main()
+size_t	ft_strlen(char *str)
 {
-	char	str[] = "Hello";
-
-	return (0);
-}*/
-
-int	ft_strlen(char *str)
-{
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
 }
