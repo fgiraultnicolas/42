@@ -15,7 +15,7 @@
 void	*ft_calloc(size_t n, size_t v_type)
 {
 	unsigned char	*ptr;
-	int				i;
+	size_t				i;
 
 	if (n * v_type > 2147483648)
 		return (0);

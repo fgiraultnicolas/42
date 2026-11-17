@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	ft_strlen_atoi(char *str)
+static int	ft_strlen_atoi(const char *str)
 {
 	int	i;
 
@@ -39,20 +39,20 @@ static int	ft_recursive_power(int nb, int power)
 	return (nb * ft_recursive_power(nb, (power - 1)));
 }
 
-int	ft_atoi(const char *nptr)
+int	ft_atoi(const char *str)
 {
-	int	minus_count;
-	int	nb;
-	int	power;
+	int		minus_bool;
+	int		nb;
+	int		power;
 
-	minus_count = 0;
+	minus_bool = 0;
 	power = ft_strlen_atoi(str);
 	nb = 0;
-	while (*str == ' ' || (*str >= 9 && *str <= 13)
-		|| *str == '+' || *str == '-')
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		if (*str == '-')
-			minus_count++;
+		minus_bool = 1;
 		str++;
 	}
 	while (*str >= '0' && *str <= '9')
@@ -61,8 +61,9 @@ int	ft_atoi(const char *nptr)
 		power--;
 		str++;
 	}
-	if (minus_count % 2 == 0)
+	if (minus_bool == 0)
 		return (nb);
 	else
 		return (-nb);
+	return (0);
 }

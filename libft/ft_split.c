@@ -12,18 +12,14 @@
 
 #include "libft.h"
 
-static int	is_sep(char c, char *charset)
+static int	is_sep(char c, char charset)
 {
-	while (*charset != '\0')
-	{
-		if (*charset == c)
-			return (1);
-		charset++;
-	}
+	if (charset == c)
+		return (1);
 	return (0);
 }
 
-static int	strlen_split(char *str, char *charset, int count)
+static int	strlen_split(char const *str, char charset, int count)
 {
 	while (*str != '\0')
 	{
@@ -37,7 +33,7 @@ static int	strlen_split(char *str, char *charset, int count)
 	return (count);
 }
 
-static char	*copy_word(char *str, char *charset, int len, int i)
+static char	*copy_word(char const *str, char charset, int len, int i)
 {
 	char	*word;
 
@@ -60,44 +56,24 @@ char	**ft_split(char const *s, char c)
 	char	**split_str;
 	char	**const_split;
 
-	if (str == 0 || charset == 0)
+	if (s == 0 || c == 0)
 		return (0);
-	split_str = malloc(sizeof(char *) * (strlen_split(str, charset, 0) + 1));
+	split_str = malloc(sizeof(char *) * (strlen_split(s, c, 0) + 1));
 	if (split_str == 0)
 		return (0);
 	const_split = split_str;
-	while (*str != '\0')
+	while (*s != '\0')
 	{
-		while (*str != '\0' && is_sep(*str, charset) == 1)
-			str++;
-		if (*str != '\0')
+		while (*s != '\0' && is_sep(*s, c) == 1)
+			s++;
+		if (*s != '\0')
 		{
-			*split_str = copy_word(str, charset, 0, 0);
+			*split_str = copy_word(s, c, 0, 0);
 			split_str++;
 		}
-		while (*str != '\0' && is_sep(*str, charset) == 0)
-			str++;
+		while (*s != '\0' && is_sep(*s, c) == 0)
+			s++;
 	}
 	*split_str = 0;
 	return (const_split);
 }
-
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	char	*str = "Bijour, test1,test2 test3 -test4,";
-	char	*charset = ", -";
-	char **output;
-	int	i;
-
-	output = ft_split(str, charset);
-	i = 0;
-	while (i <= strlen_split(str, charset, 0))
-	{
-		printf("%s\n", output[i]);
-		i++;
-	}
-	return (0);
-}*/
