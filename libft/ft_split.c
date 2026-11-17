@@ -12,9 +12,7 @@
 
 #include "libft.h"
 
-#include <stdlib.h>
-
-int	is_sep(char c, char *charset)
+static int	is_sep(char c, char *charset)
 {
 	while (*charset != '\0')
 	{
@@ -25,7 +23,7 @@ int	is_sep(char c, char *charset)
 	return (0);
 }
 
-int	strlen_split(char *str, char *charset, int count)
+static int	strlen_split(char *str, char *charset, int count)
 {
 	while (*str != '\0')
 	{
@@ -39,7 +37,7 @@ int	strlen_split(char *str, char *charset, int count)
 	return (count);
 }
 
-char	*copy_word(char *str, char *charset, int len, int i)
+static char	*copy_word(char *str, char *charset, int len, int i)
 {
 	char	*word;
 
@@ -57,7 +55,7 @@ char	*copy_word(char *str, char *charset, int len, int i)
 	return (word);
 }
 
-char	**ft_split(char *str, char *charset)
+char	**ft_split(char const *s, char c)
 {
 	char	**split_str;
 	char	**const_split;

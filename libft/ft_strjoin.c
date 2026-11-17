@@ -6,89 +6,29 @@
 /*   By: fgirault <fgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 12:00:31 by fgirault          #+#    #+#             */
-/*   Updated: 2026/09/29 16:52:37 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/17 13:41:38 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#include <stdlib.h>
-//#include <stdio.h>
-
-int	len(int i, int j, int size, char **strs)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	count;
+	char		*str;
+	size_t		i;
 
-	count = 0;
-	while (j < size)
-	{
-		i = 0;
-		while (strs[j][i] != '\0')
-		{
-			i++;
-			count++;
-		}
-		j++;
-	}
-	return (count);
-}
-
-char	*modified_strcpy_sep(char *dest, char *sep)
-{
-	while (*sep != '\0')
-	{
-		*dest = *sep;
-		dest++;
-		sep++;
-	}
-	return (dest);
-}
-
-char	*modified_strcpy(char *dest, char **strs, int j)
-{
-	int	i;
-
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)));
 	i = 0;
-	while (strs[j][i] != '\0')
+	while (i < ft_strlen(s1))
 	{
-		*dest = strs[j][i];
+		str[i] = s1[i];
 		i++;
-		dest++;
 	}
-	return (dest);
-}
-
-char	*ft_strjoin(int size, char **strs, char *sep)
-{
-	char	*dest;
-	int		j;
-	int		count;
-
-	if (size == 0)
+	while (i < ft_strlen(s1) + ft_strlen(s2))
 	{
-		dest = malloc(sizeof(char));
-		*dest = '\0';
-		return (dest);
+		str[i] = *s2;
+		s2++;
+		i++;
 	}
-	count = len(0, 0, size, strs);
-	dest = malloc(sizeof(char) * (count + (size - 1) * len(0, 0, 1, &sep) + 1));
-	if (dest == 0)
-		return (0);
-	j = 0;
-	while (j < size)
-	{
-		dest = modified_strcpy(dest, strs, j);
-		if (j != (size - 1))
-			dest = modified_strcpy_sep(dest, sep);
-		j++;
-	}
-	*dest = '\0';
-	return (dest - (count + (size - 1) * len(0, 0, 1, &sep)));
+	return (str);
 }
-
-/*int	main(int argc, char **argv)
-{
-	argv++;
-	printf("%s\n", ft_strjoin(argc - 1, argv, ", "));
-	return (0);
-}*/

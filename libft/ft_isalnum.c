@@ -12,15 +12,10 @@
 
 #include "libft.h"
 
-int	ft_str_is_alnum(char *str)
+int	ft_isalnum(int c)
 {
-	while (*str != '\0')
-	{
-		if ((*str >= 'a' && *str <= 'z') || (*str >= 'A' && *str <= 'Z')
-			|| (*str >= '0' && *str <= '9'))
-			str++;
-		else
-			return (0);
-	}
-	return (1);
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
+		|| (c >= '0' && c <= '9'))
+		return (1);
+	return (0);
 }

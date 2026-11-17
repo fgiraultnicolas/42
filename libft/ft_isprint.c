@@ -12,32 +12,9 @@
 
 #include "libft.h"
 
-//#include <stdio.h>
-
-int	ft_str_is_printable(char *str);
-
-/*int	main(void)
+int	ft_isprint(int c)
 {
-	char	str[] = "1T2e3s4t*";
-
-	if (ft_str_is_printable(str) == 1)
-		printf("1");
-	else
-		printf("0");
+	if (c >= ' ' && c <= '~')
+		return (1);
 	return (0);
-}*/
-
-int	ft_str_is_printable(char *str)
-{
-	if (*str != '\0')
-	{
-		while (*str != '\0')
-		{
-			if (*str >= ' ' && *str <= '~')
-				str++;
-			else
-				return (0);
-		}
-	}
-	return (1);
 }
