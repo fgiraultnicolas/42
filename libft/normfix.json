@@ -1,0 +1,10 @@
+{
+  "add_include": ["libft.h"],
+  "rename_include": ["header.h=libft.h"],
+  "allowed_functions": ["write", "malloc", "free"],
+  "forbid": ["system"],
+  "test": ["tests/main.c"],
+  "ldflags": "-lm",
+  "cflags": "-Wall -Wextra -Werror",
+  "no_header": false
+}

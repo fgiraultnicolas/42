@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgirault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,24 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-//#include <stdio.h>
-
-int	ft_str_is_numeric(char *str);
-
-/*int	main(void)
-{
-	char	str[] = "1T2e3s4t*";
-
-	if (ft_str_is_numeric(str) == 1)
-		printf("1");
-	else
-		printf("0");
-	return (0);
-}*/
-
-int	ft_str_is_numeric(char *str)
+int	ft_isdigit(char *str)
 {
 	while (*str != '\0')
 	{

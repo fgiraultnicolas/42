@@ -6,7 +6,7 @@
 /*   By: fgirault <fgirault@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 07:53:08 by fgirault          #+#    #+#             */
-/*   Updated: 2026/11/16 08:02:49 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/17 05:48:56 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ unsigned int	ft_lstsize(t_list *lst)
 	unsigned int	i;
 
 	i = 0;
-	while(lst != 0)
+	while (lst != 0)
 	{
 		lst = lst->next;
 		i++;

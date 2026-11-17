@@ -6,14 +6,14 @@
 /*   By: fgirault <fgirault@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 09:38:00 by fgirault          #+#    #+#             */
-/*   Updated: 2026/11/16 09:38:17 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/17 05:48:56 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	ft_tolower(char c)
 {
 	if (c >= 'A' && c <= 'Z')
-		return (c + 32) ;
+		return (c + 32);
 	else
 		return (c);
 }

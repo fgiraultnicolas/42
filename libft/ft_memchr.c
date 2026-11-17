@@ -1,8 +1,20 @@
-#include "header.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fgirault <fgirault@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/17 05:48:56 by fgirault          #+#    #+#             */
+/*   Updated: 2026/11/17 05:48:56 by fgirault         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 
 void	*ft_memchr(size_t n, const void *s, int c)
 {
-	size_t	i;
+	size_t			i;
 	unsigned char	*edit_s;
 
 	i = 0;

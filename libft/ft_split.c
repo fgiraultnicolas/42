@@ -6,11 +6,11 @@
 /*   By: fgirault <fgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/30 18:48:19 by fgirault          #+#    #+#             */
-/*   Updated: 2026/10/01 19:00:31 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/17 05:48:56 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
 #include <stdlib.h>
 
@@ -83,6 +83,7 @@ char	**ft_split(char *str, char *charset)
 	*split_str = 0;
 	return (const_split);
 }
+
 /*
 #include <stdio.h>
 

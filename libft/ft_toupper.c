@@ -6,14 +6,14 @@
 /*   By: fgirault <fgirault@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 09:38:25 by fgirault          #+#    #+#             */
-/*   Updated: 2026/11/16 09:38:29 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/17 05:48:56 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	ft_toupper(char c)
 {
 	if (c >= 'a' && c <= 'z')
-		return (c - 32) ;
+		return (c - 32);
 	else
 		return (c);
 }

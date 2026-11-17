@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
 void	*ft_calloc(int n, size_t v_type)
 {
 	unsigned char	*ptr;
-	int		i;
+	int				i;
 
 	if (n * v_type > 2147483648)
 		return (0);

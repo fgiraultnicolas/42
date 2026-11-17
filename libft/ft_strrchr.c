@@ -6,13 +6,13 @@
 /*   By: fgirault <fgirault@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 09:37:24 by fgirault          #+#    #+#             */
-/*   Updated: 2026/11/16 09:37:28 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/17 05:48:56 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-char *strrchr(const char *s, int c)
+char	*strrchr(const char *s, int c)
 {
 	char	*tmp;
 

@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
 void	ft_bzero(size_t n, void *s)
 {
-	size_t	i;
+	size_t			i;
 	unsigned char	*edit_s;
 
 	i = 0;

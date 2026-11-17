@@ -6,18 +6,18 @@
 /*   By: fgirault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 07:08:44 by fgirault          #+#    #+#             */
-/*   Updated: 2026/10/23 10:16:19 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/17 05:48:56 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
 int	ft_str_is_alnum(char *str)
 {
 	while (*str != '\0')
 	{
 		if ((*str >= 'a' && *str <= 'z') || (*str >= 'A' && *str <= 'Z')
-				|| (*str >= '0' && *str <= '9'))
+			|| (*str >= '0' && *str <= '9'))
 			str++;
 		else
 			return (0);
