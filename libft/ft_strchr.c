@@ -6,11 +6,13 @@
 /*   By: fgirault <fgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 05:48:56 by fgirault          #+#    #+#             */
-/*   Updated: 2026/11/17 05:48:56 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/19 17:26:39 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*strchr(const char *s, int c)
+#include <libft.h>
+
+char	*ft_strchr(const char *s, int c)
 {
 	while (*s != '\0' && *s != c)
 		s++;

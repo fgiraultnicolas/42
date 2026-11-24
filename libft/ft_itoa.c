@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t	int_len(int n)
+static size_t	int_len(int n)
 {
 	size_t	len;
 
@@ -27,7 +27,7 @@ size_t	int_len(int n)
 	return (len);
 }
 
-char	*putnbr_itoa_pos(int n, char *ascii)
+static char	*putnbr_itoa_pos(int n, char *ascii)
 {
 	size_t	i;
 
@@ -42,20 +42,26 @@ char	*putnbr_itoa_pos(int n, char *ascii)
 	return (ascii);
 }
 
-char	*putnbr_itoa_neg(int n, char *ascii)
+static char	*putnbr_itoa_neg(int n, char *ascii)
 {
 	size_t	i;
 
-	i = int_len(n) + 1;
-	ascii[i] = '\0';
-	while (n != 1)
+	if (n == -2147483648)
+		ft_strlcpy(ascii, "-2147483648", 12);
+	else
 	{
+		n = -n;
+		i = int_len(n) + 1;
+		ascii[i] = '\0';
+		while (n != 0)
+		{
+			i--;
+			ascii[i] = n % 10 + '0';
+			n = n / 10;
+		}
 		i--;
-		ascii[i] = n % 10 + '0';
-		n = n / 10;
+		ascii[i] = '-';
 	}
-	i--;
-	ascii[i] = '-';
 	return (ascii);
 }
 
@@ -66,16 +72,24 @@ char	*ft_itoa(int n)
 	if (n < 0)
 	{
 		ascii = malloc(sizeof(char) * (int_len(n) + 2));
-		ascii = putnbr_itoa_neg(n, ascii);
 		if (ascii == 0)
 			return (0);
+		ascii = putnbr_itoa_neg(n, ascii);
+	}
+	else if (n == 0)
+	{
+		ascii = malloc(sizeof(char) * (int_len(n) + 1));
+		if (ascii == 0)
+			return (0);
+		ascii[1] = '\0';
+		ascii[0] = '0';
 	}
 	else
 	{
 		ascii = malloc(sizeof(char) * (int_len(n) + 1));
-		ascii = putnbr_itoa_pos(n, ascii);
 		if (ascii == 0)
 			return (0);
+		ascii = putnbr_itoa_pos(n, ascii);
 	}
 	return (ascii);
 }

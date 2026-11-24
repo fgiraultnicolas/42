@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_substr_overflow(char const *s, unsigned int start)
+static char	*ft_substr_overflow(char const *s, unsigned int start)
 {
 	size_t	i;
 	char	*substring;
@@ -31,7 +31,7 @@ char	*ft_substr_overflow(char const *s, unsigned int start)
 	return (substring);
 }
 
-char	*ft_substr_underflow(char const *s, unsigned int start, size_t len)
+static char	*ft_substr_underflow(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*substring;

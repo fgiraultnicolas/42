@@ -1,59 +1,73 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgirault <fgirault@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: fgirault <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/09 10:51:13 by fgirault          #+#    #+#             */
-/*   Updated: 2026/11/17 05:48:56 by fgirault         ###   ########.fr       */
+/*   Created: 2026/09/14 07:08:44 by fgirault          #+#    #+#             */
+/*   Updated: 2026/09/14 07:35:23 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	trimlen(char const *s1, char const *set)
+static int	is_set(char c, char const *set)
+{
+	size_t	i;
+
+	i = 0;
+	while (set[i] != '\0')
+	{
+		if (set[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static size_t	strtrim_len(char const *s1, char const *set)
 {
 	size_t	i;
 	size_t	j;
-	size_t	count;
 
 	i = 0;
-	count = 0;
-	while (s1[i] != '\0')
-	{
-		j = 0;
-		while (s1[i] != set[j] && set[j] != '\0')
-			j++;
-		if (set[j] == s1[i])
-			count++;
+	j = ft_strlen(s1) - 1;
+	while (is_set(s1[i], set) == 1)
 		i++;
+	if (i != ft_strlen(s1))
+	{
+		while (is_set(s1[j], set) == 1 && j > 0)
+		{
+			i++;
+			j--;
+		}
 	}
-	return (count);
+	return (ft_strlen(s1) - i);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
-	size_t	j;
-	char	*s2;
-	char	*const_s2;
+	char	*new_str;
+	char	*const_new_str;
+	size_t	trim_len;
 
 	i = 0;
-	s2 = malloc(sizeof(char) * (ft_strlen((char *)s1) - trimlen(s1, set) + 1));
-	const_s2 = s2;
-	while (s1[i] != '\0')
+	trim_len = strtrim_len(s1, set);
+	new_str = malloc(sizeof(char) * (trim_len + 1));
+	if (new_str == 0)
+		return (0);
+	const_new_str = new_str;
+	while (is_set(*s1, set) == 1)
+		s1++;
+	while (i < trim_len)
 	{
-		j = 0;
-		while (s1[i] != set[j] && set[j] != '\0')
-			j++;
-		if (set[j] != s1[i])
-		{
-			*s2 = s1[i];
-			s2++;
-		}
+		*new_str = *s1;
+		s1++;
 		i++;
+		new_str++;
 	}
-	*s2 = '\0';
-	return (const_s2);
+	*new_str = '\0';
+	return (const_new_str);
 }
