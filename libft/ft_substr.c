@@ -12,48 +12,46 @@
 
 #include "libft.h"
 
-static char	*ft_substr_overflow(char const *s, unsigned int start)
-{
-	size_t	i;
-	char	*substring;
+static char *ft_substr_overflow(char const *s, unsigned int start) {
+  size_t i;
+  char *substring;
 
-	i = 0;
-	substring = malloc(sizeof(char) * (ft_strlen((char *)s) - start + 1));
-	if (substring == 0)
-		return (0);
-	while (start < ft_strlen((char *)s))
-	{
-		substring[i] = s[start];
-		start++;
-		i++;
-	}
-	substring[i] = '\0';
-	return (substring);
+  i = 0;
+  if (ft_strlen((char *)s) < start)
+    return (ft_strdup("\0"));
+  substring = malloc(sizeof(char) * (ft_strlen((char *)s) - start + 1));
+  if (substring == 0)
+    return (0);
+  while (start < ft_strlen((char *)s)) {
+    substring[i] = s[start];
+    start++;
+    i++;
+  }
+  substring[i] = '\0';
+  return (substring);
 }
 
-static char	*ft_substr_underflow(char const *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*substring;
+static char *ft_substr_underflow(char const *s, unsigned int start,
+                                 size_t len) {
+  size_t i;
+  char *substring;
 
-	i = 0;
-	substring = malloc(sizeof(char) * (len + 1));
-	if (substring == 0)
-		return (0);
-	while (i < len)
-	{
-		substring[i] = s[start];
-		start++;
-		i++;
-	}
-	substring[i] = '\0';
-	return (substring);
+  i = 0;
+  substring = malloc(sizeof(char) * (len + 1));
+  if (substring == 0)
+    return (0);
+  while (i < len) {
+    substring[i] = s[start];
+    start++;
+    i++;
+  }
+  substring[i] = '\0';
+  return (substring);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	if (start + len > ft_strlen((char *)s))
-		return (ft_substr_overflow(s, start));
-	else
-		return (ft_substr_underflow(s, start, len));
+char *ft_substr(char const *s, unsigned int start, size_t len) {
+  if (start + len > ft_strlen((char *)s))
+    return (ft_substr_overflow(s, start));
+  else
+    return (ft_substr_underflow(s, start, len));
 }
