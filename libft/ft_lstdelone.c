@@ -6,7 +6,7 @@
 /*   By: fgirault <fgirault@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 08:38:45 by fgirault          #+#    #+#             */
-/*   Updated: 2026/11/16 08:42:55 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/26 11:25:09 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	if (lst == 0 ||del == 0)
+	if (lst == 0 || del == 0)
 		return ;
 	del(lst->content);
 	free(lst);

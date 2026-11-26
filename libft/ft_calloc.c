@@ -12,21 +12,23 @@
 
 #include "libft.h"
 
-void *ft_calloc(size_t n, size_t v_type) {
-  unsigned char *ptr;
-  size_t i;
-  size_t test_size;
+void	*ft_calloc(size_t n, size_t v_type)
+{
+	unsigned char	*ptr;
+	size_t			i;
+	size_t			test_size;
 
-  test_size = v_type * n;
-  if (n != 0 && test_size / n != v_type)
-    return (0);
-  ptr = malloc(v_type * n);
-  if (ptr == 0)
-    return (0);
-  i = 0;
-  while (i < n * v_type) {
-    ptr[i] = '\0';
-    i++;
-  }
-  return (ptr);
+	test_size = v_type * n;
+	if (n != 0 && test_size / n != v_type)
+		return (0);
+	ptr = malloc(v_type * n);
+	if (ptr == 0)
+		return (0);
+	i = 0;
+	while (i < n * v_type)
+	{
+		ptr[i] = '\0';
+		i++;
+	}
+	return (ptr);
 }
