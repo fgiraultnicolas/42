@@ -16,7 +16,8 @@ static int ft_strlen_atoi(const char *str) {
   int i;
 
   i = 0;
-  while (*str == ' ' || (*str >= 9 && *str <= 13) || *str == '+' || *str == '-')
+  while (*str == ' ' || (*str >= 9 && *str <= 13) || *str == '+' || *str == '-'
+		  || *str == '0')
     str++;
   while (*str >= '0' && *str <= '9') {
     str++;
@@ -35,7 +36,8 @@ static int ft_recursive_power(int nb, int power) {
   return (nb * ft_recursive_power(nb, (power - 1)));
 }
 
-int ft_atoi(const char *str) {
+const char	*skip(const char *str)
+{
   int minus_bool;
   int nb;
   int power;
@@ -50,6 +52,14 @@ int ft_atoi(const char *str) {
     str++;
   } else if (*str == '+')
     str++;
+  while (*str == '0')
+	  str++;
+  return (str);
+}
+
+int ft_atoi(const char *str)
+{
+	str = skip(str);
   while (*str >= '0' && *str <= '9') {
     nb += (*str - '0') * ft_recursive_power(10, power - 1);
     power--;

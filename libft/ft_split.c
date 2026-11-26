@@ -46,6 +46,19 @@ static char *copy_word(char const *str, char charset, int len, int i) {
   return (word);
 }
 
+static void	clear(char *t, char **start)
+{
+	if (t == 0)
+	{
+		while (&t >= start)
+		{
+			free(t);
+			&t--;
+		}
+	}
+	return ;
+}
+
 char **ft_split(char const *s, char c) {
   char **split_str;
   char **const_split;
@@ -61,6 +74,7 @@ char **ft_split(char const *s, char c) {
       s++;
     if (*s != '\0') {
       *split_str = copy_word(s, c, 0, 0);
+	clear(*split_str, const_split);
       split_str++;
     }
     while (*s != '\0' && is_sep(*s, c) == 0)

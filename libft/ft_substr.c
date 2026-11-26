@@ -17,12 +17,12 @@ static char *ft_substr_overflow(char const *s, unsigned int start) {
   char *substring;
 
   i = 0;
-  if (ft_strlen((char *)s) < start)
+  if (ft_strlen(s) < start)
     return (ft_strdup("\0"));
-  substring = malloc(sizeof(char) * (ft_strlen((char *)s) - start + 1));
+  substring = malloc(sizeof(char) * (ft_strlen(s) - start + 1));
   if (substring == 0)
     return (0);
-  while (start < ft_strlen((char *)s)) {
+  while (start < ft_strlen(s)) {
     substring[i] = s[start];
     start++;
     i++;
@@ -50,7 +50,7 @@ static char *ft_substr_underflow(char const *s, unsigned int start,
 }
 
 char *ft_substr(char const *s, unsigned int start, size_t len) {
-  if (start + len > ft_strlen((char *)s))
+  if (start + len > ft_strlen(s))
     return (ft_substr_overflow(s, start));
   else
     return (ft_substr_underflow(s, start, len));

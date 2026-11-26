@@ -13,9 +13,9 @@
 #include "libft.h"
 
 char *ft_strchr(const char *s, int c) {
-  while ((unsigned char)*s != '\0' && *s != (unsigned char)c)
+  while ((char)*s != '\0' && (char)*s != (char)c)
     s++;
-  if ((unsigned char)*s == (unsigned char)c)
+  if ((char)*s == (char)c)
     return ((char *)s);
   else
     return (0);
