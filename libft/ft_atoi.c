@@ -40,20 +40,13 @@ static int	ft_recursive_power(int nb, int power)
 	return (nb * ft_recursive_power(nb, (power - 1)));
 }
 
-const char	*skip(const char *str)
+static const char	*skip(const char *str, int *minus_bool)
 {
-	int	minus_bool;
-	int	nb;
-	int	power;
-
-	minus_bool = 0;
-	power = ft_strlen_atoi(str);
-	nb = 0;
 	while (*str == ' ' || (*str >= 9 && *str <= 13))
 		str++;
 	if (*str == '-')
 	{
-		minus_bool = 1;
+		*minus_bool = 1;
 		str++;
 	}
 	else if (*str == '+')
@@ -65,7 +58,14 @@ const char	*skip(const char *str)
 
 int	ft_atoi(const char *str)
 {
-	str = skip(str);
+	int	minus_bool;
+	int	nb;
+	int	power;
+
+	minus_bool = 0;
+	str = skip(str, &minus_bool);
+	power = ft_strlen_atoi(str);
+	nb = 0;
 	while (*str >= '0' && *str <= '9')
 	{
 		nb += (*str - '0') * ft_recursive_power(10, power - 1);

@@ -90,20 +90,13 @@ static int	ft_recursive_power(int nb, int power)
 	return (nb * ft_recursive_power(nb, (power - 1)));
 }
 
-const char	*skip(const char *str)
+static const char	*skip(const char *str, int *minus_bool)
 {
-	int	minus_bool;
-	int	nb;
-	int	power;
-
-	minus_bool = 0;
-	power = ft_strlen_atoi(str);
-	nb = 0;
 	while (*str == ' ' || (*str >= 9 && *str <= 13))
 		str++;
 	if (*str == '-')
 	{
-		minus_bool = 1;
+		*minus_bool = 1;
 		str++;
 	}
 	else if (*str == '+')
@@ -115,7 +108,14 @@ const char	*skip(const char *str)
 
 int	ft_atoi(const char *str)
 {
-	str = skip(str);
+	int	minus_bool;
+	int	nb;
+	int	power;
+
+	minus_bool = 0;
+	str = skip(str, &minus_bool);
+	power = ft_strlen_atoi(str);
+	nb = 0;
 	while (*str >= '0' && *str <= '9')
 	{
 		nb += (*str - '0') * ft_recursive_power(10, power - 1);
@@ -885,7 +885,7 @@ void	ft_putstr_fd(char *s, int fd)
 /*   By: fgirault <fgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/30 18:48:19 by fgirault          #+#    #+#             */
-/*   Updated: 2026/11/26 11:25:09 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/26 16:29:36 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -930,17 +930,31 @@ static char	*copy_word(char const *str, char charset, int len, int i)
 	return (word);
 }
 
-static void	clear(char **t, char **start)
+static char	**helper(char const *s, char c, char **split_str, char **cs)
 {
-	if (t == 0)
+	while (*s != '\0')
 	{
-		while (t >= start)
+		while (*s != '\0' && is_sep(*s, c) == 1)
+			s++;
+		if (*s != '\0')
 		{
-			free(t);
-			t--;
+			*split_str = copy_word(s, c, 0, 0);
+			if (split_str == 0)
+			{
+				while (split_str >= cs)
+				{
+					free(split_str);
+					split_str--;
+				}
+				return (0);
+			}
+			split_str++;
 		}
+		while (*s != '\0' && is_sep(*s, c) == 0)
+			s++;
 	}
-	return ;
+	*split_str = 0;
+	return (cs);
 }
 
 char	**ft_split(char const *s, char c)
@@ -954,21 +968,7 @@ char	**ft_split(char const *s, char c)
 	if (split_str == 0)
 		return (0);
 	const_split = split_str;
-	while (*s != '\0')
-	{
-		while (*s != '\0' && is_sep(*s, c) == 1)
-			s++;
-		if (*s != '\0')
-		{
-			*split_str = copy_word(s, c, 0, 0);
-			clear(split_str, const_split);
-			split_str++;
-		}
-		while (*s != '\0' && is_sep(*s, c) == 0)
-			s++;
-	}
-	*split_str = 0;
-	return (const_split);
+	return (helper(s, c, split_str, const_split));
 }
 /* ************************************************************************** */
 /*                                                                            */
@@ -1491,7 +1491,7 @@ int	ft_toupper(int c)
 /*   By: fgirault <fgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 09:52:22 by fgirault          #+#    #+#             */
-/*   Updated: 2026/11/26 11:25:09 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/26 16:29:36 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1571,14 +1571,14 @@ void	ft_putnbr_fd(int n, int fd);
 
 /* Linked-list bonus */
 
-t_list	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
+t_list		*ft_lstnew(void *content);
+void		ft_lstadd_front(t_list **lst, t_list *new);
 unsigned int	ft_lstsize(t_list *lst);
-t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list		*ft_lstlast(t_list *lst);
+void		ft_lstadd_back(t_list **lst, t_list *new);
+void		ft_lstdelone(t_list *lst, void (*del)(void *));
+void		ft_lstclear(t_list **lst, void (*del)(void *));
+void		ft_lstiter(t_list *lst, void (*f)(void *));
+t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif

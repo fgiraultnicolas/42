@@ -6,7 +6,7 @@
 /*   By: fgirault <fgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/30 18:48:19 by fgirault          #+#    #+#             */
-/*   Updated: 2026/11/26 11:25:09 by fgirault         ###   ########.fr       */
+/*   Updated: 2026/11/26 16:29:36 by fgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,31 @@ static char	*copy_word(char const *str, char charset, int len, int i)
 	return (word);
 }
 
-static void	clear(char **t, char **start)
+static char	**helper(char const *s, char c, char **split_str, char **cs)
 {
-	if (t == 0)
+	while (*s != '\0')
 	{
-		while (t >= start)
+		while (*s != '\0' && is_sep(*s, c) == 1)
+			s++;
+		if (*s != '\0')
 		{
-			free(t);
-			t--;
+			*split_str = copy_word(s, c, 0, 0);
+			if (split_str == 0)
+			{
+				while (split_str >= cs)
+				{
+					free(split_str);
+					split_str--;
+				}
+				return (0);
+			}
+			split_str++;
 		}
+		while (*s != '\0' && is_sep(*s, c) == 0)
+			s++;
 	}
-	return ;
+	*split_str = 0;
+	return (cs);
 }
 
 char	**ft_split(char const *s, char c)
@@ -75,19 +89,5 @@ char	**ft_split(char const *s, char c)
 	if (split_str == 0)
 		return (0);
 	const_split = split_str;
-	while (*s != '\0')
-	{
-		while (*s != '\0' && is_sep(*s, c) == 1)
-			s++;
-		if (*s != '\0')
-		{
-			*split_str = copy_word(s, c, 0, 0);
-			clear(split_str, const_split);
-			split_str++;
-		}
-		while (*s != '\0' && is_sep(*s, c) == 0)
-			s++;
-	}
-	*split_str = 0;
-	return (const_split);
+	return (helper(s, c, split_str, const_split));
 }
